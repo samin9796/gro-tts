@@ -1,100 +1,117 @@
-## Audio Samples
-
-#### Text Input 1:
-Hoe is het met je?
-
-#### Tacotron 2 + Parallel Wavegan
-
-
-https://user-images.githubusercontent.com/43521319/169038284-ec72e19b-cd76-403b-aec0-b5cb8c8bef10.mov
-
-
-
-
-#### FastSpeech2 + Parallel Wavegan
-
-
-
-
-https://user-images.githubusercontent.com/43521319/169038375-31b94046-48e2-49da-8f3a-096ceb7665e0.mov
-
-
-#### Conformer-based FastSpeech2 + Parallel Wavegan
-
-
-https://user-images.githubusercontent.com/43521319/169038422-2eca32f5-5742-4b2d-a929-e9e69686f96e.mov
-
-
-
-#### Tacotron 2 + HifiGan
-
-
-https://user-images.githubusercontent.com/43521319/169038885-8f4bec0e-2691-40a4-8419-88eeb339fc51.mov
-
-
-#### FastSpeech2 + HifiGan
-
-
-
-https://user-images.githubusercontent.com/43521319/169038935-3528c05c-a801-4c7b-aa08-7985cc624e26.mov
-
-
-
-#### Conformer-based FastSpeech2 + HifiGan
-
-
-https://user-images.githubusercontent.com/43521319/169038969-0c81b588-cbd8-48d9-9dbd-6c4eadc6bca2.mov
-
-
-
-
-#### Text Input 2: 
-Studenten hebben het nu druk met hun studie en examens aangezien covid is afgenomen en alles weer normaal wordt
-
-#### Tacotron 2 + Parallel Wavegan
-
-
-
-https://user-images.githubusercontent.com/43521319/169038562-66a33f03-97ae-43b7-aac6-6cb4af18d330.mov
-
-
-
-#### FastSpeech2 + Parallel Wavegan
-
-
-
-https://user-images.githubusercontent.com/43521319/169038599-1aa60365-c8ca-4c0b-a4d5-af7593dde357.mov
-
-
-
-#### Conformer-based FastSpeech2 + Parallel Wavegan
-
-
-
-
-https://user-images.githubusercontent.com/43521319/169038628-15625c8b-d537-45a4-913f-9301f6079477.mov
-
-
-#### Tacotron 2 + HifiGan
-
-
-https://user-images.githubusercontent.com/43521319/169039021-b712248d-4420-47c9-bebd-aaf1b917f051.mov
-
-
-
-
-#### FastSpeech2 + HifiGan
-
-
-https://user-images.githubusercontent.com/43521319/169039089-d3228b9a-4b9c-4b48-a924-6fcfba5ddbda.mov
-
-
-
-
-#### Conformer-based FastSpeech2 + HifiGan
-
-
-https://user-images.githubusercontent.com/43521319/169039119-680c5828-25e3-41ba-b386-d596fe84124e.mov
-
-
-
+# Speech Synthesis for Gronings
+
+In this project, we implement several state-of-the-art Text-to-Speech (TTS) architectures for Gronings, a Low Saxon language spoken in the province of Groningen and around the Groningen border in Drenthe and Friesland in the Netherlands.
+
+To build TTS systems for Gronings, [ESPnet2](https://github.com/espnet/espnet), a speech processing toolkit has been utilized. The setup configuration and installation steps that have been followed based on the original [documentation](https://espnet.github.io/espnet/installation.html) to develop the TTS systems are documented below.
+
+## Install ESPnet2 locally
+
+### Setup Configuration
+
+- Ubuntu 21.4
+- Python 3.8
+- CUDA version 11.0
+- PyTorch 1.10.0cu++
+
+### Step 1: Install the following packages
+
+- cmake
+- sox
+- sndfile
+- ffmpeg
+- flac
+
+The following command will install all the above packages.
+```
+ $ sudo apt-get install cmake sox libsndfile1-dev ffmpeg flac
+```
+
+### Step 2: Installation
+1. Git clone the ESPnet repo
+```
+$ cd <any-place>
+$ git clone https://github.com/espnet/espnet
+```
+2. Setup Anaconda Environment
+
+You have to create ``` <espnet-root>/tools/activate_python.sh.``` to specify the Python interpreter used in ESPnet recipes. To do so:
+```
+$ cd <espnet-root>/tools
+$ ./setup_anaconda.sh [output-dir-name|default=venv] [conda-env-name|default=root] [python-version|default=none]
+# e.g.
+$ ./setup_anaconda.sh anaconda espnet 3.8
+```
+3. Install ESPnet
+
+The Makefile tries to install ESPnet and all dependencies including PyTorch. You can specify the PyTorch version (must be compatible with your CUDA version), for example:
+```
+$ cd <espnet-root>/tools
+$ make TH_VERSION=1.10.1
+```
+Note that the CUDA version is derived from the ```nvcc``` command. Alternatively, you can also specify the CUDA version.
+```
+$ cd <espnet-root>/tools
+$ make TH_VERSION=1.10.1 CUDA_VERSION=11.3
+```
+
+### Step 3: Check Installation
+
+Note that all the packages are not required to be installed for TTS development.
+```
+$ cd <espnet-root>/tools
+$ . ./activate_python.sh; python3 check_install.py
+```
+
+## Text-to-Speech Systems
+
+The following architectures and neural vocoders have been implemented for Gronings:
+- Architecture
+  - FastSpeech 2
+  - Conformer based FastSpeech 2
+  - Tacotron 2
+- Neural Vocoder
+  - Parallel Wavegan
+  - Hifi-gan
+  
+FastSpeech 2 has been implemented in two ways.
+1. Using Tacotron 2 as the Teacher Forced Aligner
+2. Using Montreal Forced Aligner to get the alignments
+
+The procedure of training the architectures and vocoders can be found in recipe and neural vocoder.
+
+## Results, Online Demo and Pre-trained Models
+
+<details>
+  <summary>Results</summary>
+  
+  You can listen to the generated samples from [here](https://drive.google.com/drive/folders/1djf6HOUUieKIgmvKyJThBh3V_5MfjEqJ?usp=sharing).
+  
+  | Dataset  | Architecture | Vocoder | Mean Opinion Score (MOS) |
+  | ------------- | ------------- | ------------- | ------------- |
+  | Gronings  | Ground Truth  | -  | -  |
+  | Gronings  | Tacotron 2  | Parallel Wavegan  | -  |
+  | Gronings  | FastSpeech 2  | Parallel Wavegan  | -  |
+  | Gronings  | Conformer FastSpeech 2  | Parallel Wavegan  | -  |
+  | Gronings  | Tacotron 2  | Hifi-gan  | -  |
+  | Gronings  | FastSpeech 2  | Hifi-gan  | -  |
+  | Gronings  | Conformer FastSpeech 2  | Hifi-gan  | -  |
+
+</details>
+
+<details>
+  <summary>Online Demo</summary>
+  
+  The real-time demo is available on [HuggingFace](https://huggingface.co/spaces/ahnafsamin/GroTTS-FastSpeech2)! 
+  
+  FastSpeech 2 (using Tacotron 2 as Teacher Forced Aligner) and a pre-trained Parallel Wavegan vocoder have been used here. This vocoder is pre-trained on English data since the current ESPnet+HuggingFace integration does not allow to use vocoder trained on custom data.
+</details>
+
+<details>
+  <summary>Pre-trained Models</summary>
+  
+  The following models are trained on approx. 2 hours of Gronings speech data and can be available on HuggingFace!
+  
+  - [Fast Speech 2](https://huggingface.co/ahnafsamin/FastSpeech2-gronings) (using Tacotron 2 as Teacher Forced Aligner)
+  - [Parallel Wavegan vocoder](https://huggingface.co/ahnafsamin/parallelwavegan-gronings)
+  
+</details>

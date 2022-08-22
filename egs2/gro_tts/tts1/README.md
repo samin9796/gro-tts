@@ -2,17 +2,21 @@
 
 You need to follow the [ESPnet TTS Recipe template](https://github.com/espnet/espnet/tree/master/egs2/TEMPLATE/tts1) to get detailed information about training a model. In short, you can run the following commands for training models with your custom data:
 
-#### Step 1: Go to the recipe directory
+#### Step 1: Clone the ESPnet repository
+```
+$ git clone https://github.com/espnet/espnet.git
+```
+#### Step 2: Download or follow the ```egs2/gro_tts/tts1``` recipe from this repository. Go to the recipe directory
 ```
 $ cd egs2/gro_tts/tts1
 ```
-#### Step 2: Training the model
+#### Step 3: Training the model
 
 There are 7 stages in TTS recipe. 
 
 #### 1. Data preparation
 
-You can manually follow the LJSPEECH recipe and then put your files in the correct directory (See ```data/``` in LJSPEECH). Here, KALDI style data preparation is maintained.
+You can manually follow the GroTTS recipe and then put your files in the correct directory (See ```data/``` in [GroTTS](https://github.com/samin9796/gro-tts/tree/main/egs2/gro_tts/tts1/data)). Here, KALDI style data preparation is maintained.
 
 #### 2. Wav dump / Embedding preparation
 
@@ -24,7 +28,7 @@ You can set the threshold values via ```--min_wav_duration``` and ```--max_wav_d
 
 #### 4. Token list generation
 
-Token list generation stage. It generates token list (dictionary) from srctexts. You can change the tokenization type via ```--token_type``` option. ```token_type=char``` and ```token_type=phn``` are supported. If ```--cleaner``` option is specified, the input text will be cleaned with the specified cleaner. If ```token_type=phn```, the input text will be converted with G2P module specified by ```--g2p``` option.
+Token list generation stage. It generates token list (dictionary) from srctexts. You can change the tokenization type via ```--token_type``` option. ```token_type=char``` (characters) and ```token_type=phn``` (phones) are supported. If ```--cleaner``` option is specified, the input text will be cleaned with the specified cleaner (e.g. Using Tacotron cleaner: ```"(Hello-World); & jr. & dr."``` -> ```HELLO WORLD, AND JUNIOR AND DOCTOR```). If ```token_type=phn```, the input text will be converted with G2P module specified by ```--g2p``` option.
 
 For Gronings, ```token_type=char``` has been used and the following command has been executed.
 

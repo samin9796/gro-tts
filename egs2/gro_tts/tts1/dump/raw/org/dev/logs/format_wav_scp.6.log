@@ -1,0 +1,7 @@
+# pyscripts/audio/format_wav_scp.py --fs 22050 --audio-format wav dump/raw/org/dev/logs/wav.6.scp dump/raw/org/dev/data/format.6 
+# Started at Sat Apr  2 16:34:15 CEST 2022
+#
+2022-04-02 16:34:16,453 (format_wav_scp:43) INFO: /home/samin/anaconda3/envs/espnet/bin/python3 pyscripts/audio/format_wav_scp.py --fs 22050 --audio-format wav dump/raw/org/dev/logs/wav.6.scp dump/raw/org/dev/data/format.6
+0it [00:00, ?it/s]8it [00:00, 5858.99it/s]
+# Accounting: time=1 threads=1
+# Ended (code 0) at Sat Apr  2 16:34:16 CEST 2022, elapsed time 1 seconds

@@ -8,6 +8,7 @@ To build TTS systems for Gronings, [ESPnet2](https://github.com/espnet/espnet), 
 
 ### Setup Configuration
 
+For the experiments, the following setup has been used. It is not necessary to have this exact configuration, however, compatibility between different versions must be ensured.
 - Ubuntu 20.04 LTS
 - Python 3.8.12
 - CUDA version 11.1 (run ```nvcc -V``` to check it)

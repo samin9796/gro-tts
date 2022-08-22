@@ -1,6 +1,6 @@
 # Speech Synthesis for Gronings
 
-In this project, we implement several state-of-the-art Text-to-Speech (TTS) architectures for Gronings, a Low Saxon language spoken in the province of Groningen and around the Groningen border in Drenthe and Friesland in the Netherlands.
+In this project, we implement several state-of-the-art Text-to-Speech (TTS) architectures for Gronings, a Low Saxon language spoken in the province of Groningen and around the Groningen border in Drenthe and Friesland in the Netherlands.[^1]
 
 To build TTS systems for Gronings, [ESPnet2](https://github.com/espnet/espnet), a speech processing toolkit has been utilized. The setup configuration and installation steps that have been followed based on the original [documentation](https://espnet.github.io/espnet/installation.html) to develop the TTS systems are documented below.
 
@@ -8,10 +8,12 @@ To build TTS systems for Gronings, [ESPnet2](https://github.com/espnet/espnet), 
 
 ### Setup Configuration
 
-- Ubuntu 21.4
-- Python 3.8
-- CUDA version 11.0
-- PyTorch 1.10.0cu++
+- Ubuntu 20.04 LTS
+- Python 3.8.12
+- CUDA version 11.1 (run ```nvcc -V``` to check it)
+- CUDA Driver version 470.103.01 (run ```nvidia-smi``` to check it)
+- CUDA version 11.4 (run ```nvidia-smi``` to check it)
+- PyTorch 1.10.1+cu111
 
 ### Step 1: Install the following packages
 
@@ -46,12 +48,12 @@ $ ./setup_anaconda.sh anaconda espnet 3.8
 The Makefile tries to install ESPnet and all dependencies including PyTorch. You can specify the PyTorch version (must be compatible with your CUDA version), for example:
 ```
 $ cd <espnet-root>/tools
-$ make TH_VERSION=1.10.1
+$ make TH_VERSION=1.10.1+cu111
 ```
 Note that the CUDA version is derived from the ```nvcc``` command. Alternatively, you can also specify the CUDA version.
 ```
 $ cd <espnet-root>/tools
-$ make TH_VERSION=1.10.1 CUDA_VERSION=11.3
+$ make TH_VERSION=1.10.1+cu111 CUDA_VERSION=11.1
 ```
 
 ### Step 3: Check Installation
@@ -66,16 +68,16 @@ $ . ./activate_python.sh; python3 check_install.py
 
 The following architectures and neural vocoders have been implemented for Gronings:
 - Architecture
-  - FastSpeech 2
-  - Conformer based FastSpeech 2
-  - Tacotron 2
+  - [FastSpeech 2](https://arxiv.org/abs/2006.04558)
+  - [Conformer FastSpeech 2](https://arxiv.org/pdf/2010.13956.pdf)
+  - [Tacotron 2](https://arxiv.org/abs/1712.05884)
 - Neural Vocoder
-  - Parallel Wavegan
-  - Hifi-gan
+  - [Parallel Wavegan](https://arxiv.org/abs/1910.11480)
+  - [Hifi-gan](https://arxiv.org/abs/2010.05646)
   
 FastSpeech 2 has been implemented in two ways.
 1. Using Tacotron 2 as the Teacher Forced Aligner
-2. Using Montreal Forced Aligner to get the alignments
+2. Using [Montreal Forced Aligner](https://mfa-models.readthedocs.io/en/latest/acoustic/Dutch/Dutch%20CV%20acoustic%20model%20v2_0_0.html#Dutch%20CV%20acoustic%20model%20v2_0_0) to get the alignments
 
 The procedure of training the architectures and vocoders can be found in recipe and neural vocoder.
 
@@ -112,6 +114,10 @@ The procedure of training the architectures and vocoders can be found in recipe 
   The following models are trained on approx. 2 hours of Gronings speech data and can be available on HuggingFace!
   
   - [Fast Speech 2](https://huggingface.co/ahnafsamin/FastSpeech2-gronings) (using Tacotron 2 as Teacher Forced Aligner)
+  - [Tacotron 2](https://huggingface.co/ahnafsamin/Tacotron2-gronings)
   - [Parallel Wavegan vocoder](https://huggingface.co/ahnafsamin/parallelwavegan-gronings)
   
 </details>
+
+## References
+[^1]: https://en.wikipedia.org/wiki/Gronings_dialect.

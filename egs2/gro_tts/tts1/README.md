@@ -28,7 +28,7 @@ You can set the threshold values via ```--min_wav_duration``` and ```--max_wav_d
 
 #### 4. Token list generation
 
-Token list generation stage. It generates token list (dictionary) from srctexts. You can change the tokenization type via ```--token_type``` option. ```token_type=char``` (characters) and ```token_type=phn``` (phones) are supported. If ```--cleaner``` option is specified, the input text will be cleaned with the specified cleaner (e.g. Using Tacotron cleaner: ```"(Hello-World); & jr. & dr."``` -> ```HELLO WORLD, AND JUNIOR AND DOCTOR```). If ```token_type=phn```, the input text will be converted with G2P module specified by ```--g2p``` option.
+Token list generation stage. It generates token list (dictionary) from srctexts. Tokens are generated since during training the Tacotrons, it takes the character/phone units as input. You can change the tokenization type via ```--token_type``` option. ```token_type=char``` (characters) and ```token_type=phn``` (phones) are supported. If ```--cleaner``` option is specified, the input text will be cleaned with the specified cleaner (e.g. Using Tacotron cleaner: ```"(Hello-World); & jr. & dr."``` -> ```HELLO WORLD, AND JUNIOR AND DOCTOR```). If ```token_type=phn```, the input text will be converted with G2P module specified by ```--g2p``` option.
 
 For Gronings, ```token_type=char``` has been used and the following command has been executed.
 
@@ -40,7 +40,7 @@ Alternatively, you can manually set the ```--token_type``` in the config file.
 
 #### 5. TTS statistics collection
 
-You can run the following command.
+It collects the shape information of the input and output and calculates statistics for feature normalization (mean and variance over training data). You can run the following command.
 
 ```
 ./run.sh --stage 5 --stop-stage 5
@@ -64,7 +64,7 @@ In this stage, you need to execute the following command.
 
 ### Training FastSpeech2
 
-The stages 1-4 is exactly similar to Tacotron 2 training. You need to train Tacotron2 or Transformer-TTS at first which will be the teacher model to get the durations. For this, you need to decode all of data in the following way.
+The stages 1-4 is exactly similar to Tacotron 2 training. If you have already run those stages, you do not need to go through again. You need to train Tacotron2 or Transformer-TTS at first which will be the teacher model to get the durations. If you have an existing Tacotron 2, you can just use that ([Link to pretrained Tacotron 2 on Gronings](https://huggingface.co/ahnafsamin/Tacotron2-gronings)). After that, you need to decode all of data in the following way.
 
 ``` 
     $ ./run.sh --stage 7 \

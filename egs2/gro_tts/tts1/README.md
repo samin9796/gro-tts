@@ -93,4 +93,4 @@ Finally, you can train FastSpeech 2 with the following command.
 
 Stage 7 (Decoding) is same as Tacotron2 decoding.
 
-To train the neural vocoders, this [repo](https://github.com/kan-bayashi/ParallelWaveGAN) has been followed. Detailed documentation will be available soon in this repo.
+To train the neural vocoders, this [repo](https://github.com/kan-bayashi/ParallelWaveGAN) has been followed. Relevant files and detailed documentation will be available soon in this repo.

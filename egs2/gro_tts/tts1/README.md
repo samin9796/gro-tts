@@ -138,7 +138,7 @@ It collects the [shape information](https://github.com/samin9796/gro-tts/tree/ma
 
 #### 6. TTS training
 
-After stage 5 completes, you can run the following command. By default, Tacotron 2 architecture will be trained. The parameters are specified in the [train.yaml](https://github.com/samin9796/gro-tts/blob/main/egs2/gro_tts/tts1/conf/train.yaml) file which can be found in the ```\conf``` folder. If you want to change the parameters, you can do that from ```train.yaml```. For Gronings, the default parameters set for the LJSpeech recipe is used. The only changes that have been made are ```batch_bins: 2000000``` and 
+After stage 5 completes, you can run the following command. By default, Tacotron 2 architecture will be trained. The parameters are specified in the [train.yaml](https://github.com/samin9796/gro-tts/blob/main/egs2/gro_tts/tts1/conf/train.yaml) file which can be found in the ```\conf``` folder. If you want to change the parameters, you can do that from ```train.yaml```. For Gronings, the default parameters set for the LJSpeech recipe are used. The only changes that have been made are ```batch_bins: 2000000``` and 
 ```accum_grad: 2``` to solve our limited GPU memory issue.
 ```
 ./run.sh --stage 6 --stop-stage 6

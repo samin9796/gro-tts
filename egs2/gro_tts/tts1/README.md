@@ -122,7 +122,7 @@ Tokens are generated since during training the Tacotron 2 model, it takes the ch
 For Gronings, ```token_type=char``` has been used and the following command has been executed.
 
 ```
-./run.sh --stage 4 --stop-stage 4 --token_type=char
+./run.sh --stage 4 --stop-stage 4 --token_type char
 ```
 To use ```token_type=phn``` for Gronings, a G2P converter for Gronings is required which is currently not available. Thus, ```token_type=char``` is used here.
 

@@ -80,7 +80,7 @@ FastSpeech 2 has been implemented in two ways.
 1. Using Tacotron 2 as the Teacher Forced Aligner
 2. Using [Montreal Forced Aligner](https://mfa-models.readthedocs.io/en/latest/acoustic/Dutch/Dutch%20CV%20acoustic%20model%20v2_0_0.html#Dutch%20CV%20acoustic%20model%20v2_0_0) to get the alignments
 
-The procedure of training the architectures and vocoders can be found in recipe and neural vocoder.
+The procedure of training the architectures and vocoders can be found in [recipe](https://github.com/samin9796/gro-tts/tree/main/egs2/gro_tts/tts1) and [neural vocoder](https://github.com/kan-bayashi/ParallelWaveGAN).
 
 ## Results, Online Demo and Pre-trained Models
 

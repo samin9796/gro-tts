@@ -226,8 +226,6 @@ If you have an existing Tacotron 2, you can just use that ([Link to pretrained T
     --test_sets "tr_no_dev dev eval1" 
 ```
 
-If you face ```RuntimeError: Keys are mismatched.``` error, visit the following [link](https://github.com/espnet/espnet/issues/4336) for solution.
-
 Then, you need to perform stage 5 to calculate additional statistics (F0 and energy). By running the following command, the training will also start.
 
 ``` 
@@ -241,9 +239,7 @@ Then, you need to perform stage 5 to calculate additional statistics (F0 and ene
 
 Here, the parameter ```train_config``` refers to the configuration file for training the fastspeech2 model. You can change the architecture, learning rate, batch bins etc. from the ```conf/tuning/train_fastspeech2.yaml``` file. Another parameter ```teacher_dumpdir``` refers to the directory where all the phone durations are located. The ```exp/tts_train_raw_char_tacotron_g2p_en_no_space/decode_use_teacher_forcingtrue_train.loss.ave``` directory will automatically be generated since you have already run the stage 7 above.
 
-Stage 7 (Decoding) is same as Tacotron2 decoding.
-
-To train the neural vocoders, this [repo](https://github.com/kan-bayashi/ParallelWaveGAN) has been followed. Relevant files and detailed documentation will be available soon in this repo.
+If you face ```RuntimeError: Keys are mismatched.``` error, visit the following [link](https://github.com/espnet/espnet/issues/4336) for solution.
 
 ### Training Vocoders
 

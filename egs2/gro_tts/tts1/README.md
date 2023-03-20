@@ -96,7 +96,7 @@ Copy the ```tr_no_dev```, ```dev``` and ```eval``` directories from ```data``` f
 
 #### 3. Removal of long / short data
 
-You can set the threshold values via ```--min_wav_duration``` and ```--max_wav_duration```. For Gronings dataset, this stage can be skipped since all the samples in this dataset have the proper audio length suitable for training.
+You can set the threshold values via ```--min_wav_duration``` and ```--max_wav_duration```.
 
 #### 4. Token list generation
 

@@ -244,3 +244,21 @@ If you face ```RuntimeError: Keys are mismatched.``` error, visit the following 
 ### Training Vocoders
 
 Please follow this [link](https://github.com/kan-bayashi/ParallelWaveGAN) to train a vocoder using your custom dataset.
+
+### Inference
+
+Please follow the link for inference [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/espnet/notebook/blob/master/espnet2_tts_realtime_demo.ipynb)
+
+If you have the TTS model and vocoder file on your local system and want to do inference, then use the following code:
+
+``` 
+from espnet2.bin.tts_inference import Text2Speech
+from scipy.io.wavfile import write
+
+model = Text2Speech.from_pretrained(
+    model_file="/<path_to_the_root>/tts1/exp/tts_train_raw_char_tacotron/train.loss.best.pth",
+    vocoder_file="/<path_to_the_root>/voc1/exp/train_nodev_parallel_wavegan.v1/checkpoint-400000steps.pkl"
+)
+output = model("mamme en t potje gingen noar de winkel stuut mos ze hemmen") # an example sentence
+write("output.wav", 22050, output['wav'].numpy())
+```
